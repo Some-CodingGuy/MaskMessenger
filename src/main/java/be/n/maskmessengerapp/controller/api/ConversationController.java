@@ -19,6 +19,13 @@ public class ConversationController {
         this.conversationService = conversationService;
     }
 
+    /**
+     * Search a conversation with the given Id.
+     * @param id
+     *          Id of the conversation that needs to be retrieved from the database
+     * @return
+     *          The conversation with the given Id, if it exists.
+     */
     @GetMapping(path = "{id}")
     public Optional<Conversation> getConversationbyId(@PathVariable("id") UUID id){
         return conversationService.getConversationFromTheDatabase(id);
@@ -28,5 +35,7 @@ public class ConversationController {
     public void deleteConversation(@PathVariable("id") UUID id){
         conversationService.deleteConversationFromDatabase(id);
     }
+
+
 
 }
