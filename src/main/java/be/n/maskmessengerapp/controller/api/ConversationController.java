@@ -31,6 +31,11 @@ public class ConversationController {
         return conversationService.getConversationFromTheDatabase(id);
     }
 
+    /**
+     * Delete the conversation that has the given Id.
+     * @param id
+     *          Id of the conversation that needs to be deleted.
+     */
     @DeleteMapping(path = "{id}")
     public void deleteConversation(@PathVariable("id") UUID id){
         conversationService.deleteConversationFromDatabase(id);
