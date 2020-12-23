@@ -1,6 +1,6 @@
 package be.n.maskmessengerapp.controller.service;
 
-import be.n.maskbackedspring.model.datamodel.Message;
+import be.n.maskmessengerapp.model.datamodel.Message;
 import be.n.maskmessengerapp.model.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

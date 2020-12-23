@@ -1,7 +1,7 @@
 package be.n.maskmessengerapp.controller.api;
 
 import be.n.maskmessengerapp.controller.service.MessageService;
-import be.n.maskbackedspring.model.datamodel.Message;
+import be.n.maskmessengerapp.model.datamodel.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
