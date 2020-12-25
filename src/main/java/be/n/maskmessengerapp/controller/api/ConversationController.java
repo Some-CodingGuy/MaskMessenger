@@ -3,6 +3,7 @@ package be.n.maskmessengerapp.controller.api;
 import be.n.maskmessengerapp.controller.service.ConversationService;
 import be.n.maskmessengerapp.model.datamodel.Conversation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -12,7 +13,7 @@ import java.util.UUID;
 @RequestMapping("api/maskmessenger/conversation")
 public class ConversationController {
 
-    private final ConversationService conversationService;
+    private ConversationService conversationService;
 
     @Autowired
     public ConversationController (ConversationService conversationService){

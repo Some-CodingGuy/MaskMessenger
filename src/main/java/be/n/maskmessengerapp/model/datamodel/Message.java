@@ -2,8 +2,13 @@ package be.n.maskmessengerapp.model.datamodel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Message {
 
+    @Id
     @JsonProperty("id")
     private int id;
     @JsonProperty("messagetext")

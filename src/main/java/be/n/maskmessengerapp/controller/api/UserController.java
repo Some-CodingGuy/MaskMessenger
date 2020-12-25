@@ -12,7 +12,7 @@ import java.util.UUID;
 @RequestMapping("api/maskmessenger/user")
 public class UserController {
 
-    private final UserService userService;
+    private UserService userService;
 
     @Autowired
     public UserController (UserService userService){
