@@ -3,7 +3,6 @@ package be.n.maskmessengerapp.controller.service;
 import be.n.maskmessengerapp.model.datamodel.User;
 import be.n.maskmessengerapp.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
