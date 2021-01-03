@@ -20,6 +20,11 @@ public class ConversationController {
         this.conversationService = conversationService;
     }
 
+    @PostMapping
+    public void createConversation(@RequestBody Conversation conversation){
+        this.conversationService.createNewConversation(conversation);
+    }
+
     /**
      * Search a conversation with the given Id.
      * @param id
@@ -41,6 +46,8 @@ public class ConversationController {
     public void deleteConversation(@PathVariable("id") UUID id){
         conversationService.deleteConversationFromDatabase(id);
     }
+
+
 
 
 

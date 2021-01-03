@@ -1,50 +1,57 @@
 package be.n.maskmessengerapp.model.datamodel;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
-    @JsonProperty("id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("about")
-    private String about;
-
-    /* Getters for the user class */
+    private String userName;
+    private String password;
+    private boolean active;
+    private String roles;
 
     public UUID getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getAbout() {
-        return about;
-    }
-
-    /* Setters for the user class */
-
-    public User setId(UUID id) {
+    public void setId(UUID id) {
         this.id = id;
-        return this;
     }
 
-    public User setName(String name) {
-        this.name = name;
-        return this;
+    public String getUserName() {
+        return userName;
     }
 
-    public User setAbout(String about) {
-        this.about = about;
-        return this;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = true;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }
