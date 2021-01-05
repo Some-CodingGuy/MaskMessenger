@@ -1,6 +1,7 @@
 package be.n.maskmessengerapp.model.repository;
 
 import be.n.maskmessengerapp.model.datamodel.Person;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;

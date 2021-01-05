@@ -2,14 +2,11 @@ package be.n.maskmessengerapp.model.datamodel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.util.UUID;
 
-@Entity
 public class Conversation {
 
-    @Id
+    @JsonProperty("conversation_id")
     private UUID conversationId;
     @JsonProperty("interlocutor1_id")
     private UUID interlocutor1_Id;
