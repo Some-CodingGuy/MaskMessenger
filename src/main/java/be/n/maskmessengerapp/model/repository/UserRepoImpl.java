@@ -22,6 +22,11 @@ public class UserRepoImpl implements UserRepo {
 
     @Override
     public int insertPerson(UUID id, Person person) {
+        String sql = "INSERT INTO users (id, active, password, roles, user_name) VALUES (?, ?, ?, ?, ?)";
+        String password = person.getPassword();
+        String roles = person.getRoles();
+        String userName = person.getUserName();
+        jdbcTemplate.update(sql, id, true, password, roles, userName);
         return 0;
     }
 

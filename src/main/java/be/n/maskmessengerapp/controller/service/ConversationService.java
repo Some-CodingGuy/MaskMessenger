@@ -3,6 +3,7 @@ package be.n.maskmessengerapp.controller.service;
 import be.n.maskmessengerapp.model.datamodel.Conversation;
 import be.n.maskmessengerapp.model.repository.ConversationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -20,7 +21,7 @@ public class ConversationService {
      *          New conversation that will be added to the database.
      * @return
      */
-    public Conversation createNewConversation(Conversation conversation){
+    public Conversation createNewConversation(@Qualifier("conversationJson") Conversation conversation){
         return conversationRepository.save(conversation);
     }
 
