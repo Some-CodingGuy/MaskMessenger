@@ -13,6 +13,12 @@ public class Conversation {
     @JsonProperty("interlocutor2_Id")
     private UUID interlocutor2_Id;
 
+    public Conversation(UUID conversationId, UUID interlocutor1_Id, UUID interlocutor2_Id) {
+        this.conversationId = conversationId;
+        this.interlocutor1_Id = interlocutor1_Id;
+        this.interlocutor2_Id = interlocutor2_Id;
+    }
+
     public UUID getConversationId() {
         return conversationId;
     }

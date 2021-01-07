@@ -33,12 +33,23 @@ public class ConversationRepoImpl implements ConversationRepo {
 
     @Override
     public Optional<Conversation> selectConversationByI(UUID id) {
-        String sql = "SELECT * from";
-        return null;
+        String sql = "SELECT * FROM conversation WHERE id = ?";
+        Conversation conversation = jdbcTemplate.queryForObject(
+                sql, new Object[]{id},
+                ((resultSet, i) -> {
+                    UUID conversationID = UUID.fromString(resultSet.getString("conversation_id"));
+                    UUID interlocutor1ID = UUID.fromString(resultSet.getString("interlocutor1_id"));
+                    UUID interlocutor2ID = UUID.fromString(resultSet.getString("interlocutor2_id"));
+                    return new Conversation(conversationID, interlocutor1ID, interlocutor2ID);
+                })
+        );
+        return Optional.ofNullable(conversation);
     }
 
     @Override
     public int deleteConversationById(UUID id) {
+        String sql = "DELETE FROM conversation WHERE conversation_id = ?";
+        jdbcTemplate.update(sql, id);
         return 0;
     }
 }

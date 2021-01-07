@@ -1,7 +1,6 @@
 package be.n.maskmessengerapp.model.repository;
 
 import be.n.maskmessengerapp.model.datamodel.Person;
-import be.n.maskmessengerapp.model.datamodel.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
