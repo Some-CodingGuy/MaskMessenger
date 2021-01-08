@@ -52,4 +52,5 @@ public class ConversationRepoImpl implements ConversationRepo {
         jdbcTemplate.update(sql, id);
         return 0;
     }
+
 }
