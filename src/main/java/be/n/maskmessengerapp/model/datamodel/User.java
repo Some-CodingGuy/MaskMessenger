@@ -1,19 +1,28 @@
 package be.n.maskmessengerapp.model.datamodel;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
-@Entity
-@Table(name = "users")
+/* Temp substitute of User to test some new implementations */
+
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonProperty("id")
     private UUID id;
+    @JsonProperty("username")
     private String userName;
+    @JsonProperty("password")
     private String password;
+    @JsonProperty("active")
     private boolean active;
+    @JsonProperty("roles")
     private String roles;
+
+    public User(UUID id, String userName, String password) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+    }
 
     public UUID getId() {
         return id;

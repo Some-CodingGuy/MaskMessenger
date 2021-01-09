@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -27,7 +28,7 @@ public class UserController {
      */
     @GetMapping
     public List<User> getAllUsers(){
-        return userService.getAllUsersFromDatabase();
+        return userService.getAllUsers();
     }
 
     /**
@@ -40,8 +41,8 @@ public class UserController {
      *          The user with the given Id.
      */
     @GetMapping(path = "{id}")
-    public User getUserById(@PathVariable("id") UUID id){
-        return userService.getUserFromDatabaseWithId(id);
+    public Optional<User> getUserById(@PathVariable("id") UUID id){
+        return userService.getUserByID(id);
     }
 
     /**
@@ -52,7 +53,7 @@ public class UserController {
      */
     @PostMapping
     public void addUser(@RequestBody User user){
-        userService.saveUserToDatabase(user);
+        userService.addUser(user);
     }
 
     /**
@@ -63,7 +64,7 @@ public class UserController {
      */
     @DeleteMapping(path = "{id}")
     public void deleteUserById(@PathVariable("id") UUID id){
-        userService.deleteUserById(id);
+        userService.deleteUser(id);
     }
 
 }

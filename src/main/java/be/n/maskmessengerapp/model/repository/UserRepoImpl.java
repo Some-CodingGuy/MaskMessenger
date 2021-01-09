@@ -1,6 +1,6 @@
 package be.n.maskmessengerapp.model.repository;
 
-import be.n.maskmessengerapp.model.datamodel.Person;
+import be.n.maskmessengerapp.model.datamodel.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Repository("MySQLRepo")
+@Repository("MySQLUserRepo")
 public class UserRepoImpl implements UserRepo {
 
     private final JdbcTemplate jdbcTemplate;
@@ -20,51 +20,51 @@ public class UserRepoImpl implements UserRepo {
     }
 
     @Override
-    public int insertPerson(UUID id, Person person) {
+    public int insertUser(UUID id, User user) {
         String sql = "INSERT INTO users (id, active, password, roles, user_name) VALUES (?, ?, ?, ?, ?)";
-        String password = person.getPassword();
-        String roles = person.getRoles();
-        String userName = person.getUserName();
+        String password = user.getPassword();
+        String roles = user.getRoles();
+        String userName = user.getUserName();
         jdbcTemplate.update(sql, id, true, password, roles, userName);
         return 0;
     }
 
     @Override
-    public List<Person> selectAllPeople() {
+    public List<User> selectAllUsers() {
         String sql = "SELECT * FROM users;";
 
         return jdbcTemplate.query(sql,(resultSet, i) -> {
             UUID id = UUID.fromString(resultSet.getString("id"));
             String name = resultSet.getString("user_name");
             String password = "Password is hidden for security purposes";
-            return new Person(id, name,password);
+            return new User(id, name,password);
         });
     }
 
     @Override
-    public Optional<Person> selectPersonByID(UUID id) {
+    public Optional<User> selectUserByID(UUID id) {
 
         String sql = "SELECT * FROM users WHERE id = ?";
 
-        Person person = jdbcTemplate.queryForObject(
+        User user = jdbcTemplate.queryForObject(
                 sql,
                 new Object[]{id} ,
                 (resultSet, i) -> {
-                    UUID personID = UUID.fromString(resultSet.getString("id"));
+                    UUID userID = UUID.fromString(resultSet.getString("id"));
                     String name = resultSet.getString("user_name");
                     String password = "Password is hidden for security purposes";
-                    return new Person(personID, name, password);
+                    return new User(userID, name, password);
                 });
-        return Optional.ofNullable(person);
+        return Optional.ofNullable(user);
     }
 
     @Override
-    public int updatePersonByID(UUID id, Person person) {
+    public int updateUserByID(UUID id, User user) {
         return 0;
     }
 
     @Override
-    public int deletePersonById(UUID id) {
+    public int deleteUserById(UUID id) {
         return 0;
     }
 }

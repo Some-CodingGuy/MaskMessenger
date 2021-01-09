@@ -1,7 +1,6 @@
 package be.n.maskmessengerapp.model.repository;
 
-import be.n.maskmessengerapp.model.datamodel.Person;
-import org.springframework.stereotype.Repository;
+import be.n.maskmessengerapp.model.datamodel.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,63 +9,63 @@ import java.util.UUID;
 public interface UserRepo {
 
     /**
-     * Insert a person into a database.
+     * Insert a user into a database.
      * @param id
-     *          ID of the person to be added to the database.
-     * @param person
-     *          Person to be added to the database.
+     *          ID of the user to be added to the database.
+     * @param user
+     *          User to be added to the database.
      * @return
-     *          If the person is added successfully return 1, else return 0.
+     *          If the user is added successfully return 1, else return 0.
      */
-    int insertPerson(UUID id, Person person);
+    int insertUser(UUID id, User user);
 
     /**
-     * Add a person without an id.
-     * @param person
-     *          Person that will be added to the database.
+     * Add a user without an id.
+     * @param user
+     *          User that will be added to the database.
      * @return
-     *          If the person is added successfully return 1, else return 0.
+     *          If the user is added successfully return 1, else return 0.
      */
-    default int insertPerson(Person person){
+    default int insertUser(User user){
         UUID id = UUID.randomUUID();
-        return insertPerson(id, person);
+        return insertUser(id, user);
     }
 
     /**
-     * Select all the people in the "local database" (in this example the database is a local list, since we don't need more than that to store this data), and return the list with all selected people.
+     * Select all the users in the "local database" (in this example the database is a local list, since we don't need more than that to store this data), and return the list with all selected users.
      * @return
-     *          A list of all the people in the local database.
+     *          A list of all the users in the local database.
      */
-    List<Person> selectAllPeople();
+    List<User> selectAllUsers();
 
     /**
-     * Returns the person from the database with the given ID.
+     * Returns the user from the database with the given ID.
      * @param id
-     *          ID of the person you are looking for in the database.
+     *          ID of the user you are looking for in the database.
      * @return
-     *          The Person with the given ID if it exists.
+     *          The User with the given ID if it exists.
      */
-    Optional<Person> selectPersonByID(UUID id);
+    Optional<User> selectUserByID(UUID id);
 
 
     /**
-     * Updates the person with the given ID.
+     * Updates the user with the given ID.
      * @param id
-     *          ID of the person that needs to be updated.
-     * @param person
-     *          New object person with the updated elements
-     *          (since this is a small project where person has only a field to learn how this works, there is no point on going through the whole update-each-individual-element-at-a-time process)
+     *          ID of the user that needs to be updated.
+     * @param user
+     *          New object user with the updated elements
+     *          (since this is a small project where user has only a field to learn how this works, there is no point on going through the whole update-each-individual-element-at-a-time process)
      * @return
      */
-    int updatePersonByID(UUID id, Person person);
+    int updateUserByID(UUID id, User user);
 
     /**
-     * Delete a person from the database with the given ID.
+     * Delete a user from the database with the given ID.
      * @param id
-     *          ID of the person that will be deleted from the database.
+     *          ID of the user that will be deleted from the database.
      * @return
-     *          If the person is deleted successfully return 1, else return 0.
+     *          If the user is deleted successfully return 1, else return 0.
      */
-    int deletePersonById(UUID id);
+    int deleteUserById(UUID id);
 
 }

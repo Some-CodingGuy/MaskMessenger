@@ -1,71 +1,78 @@
 package be.n.maskmessengerapp.controller.service;
 
 import be.n.maskmessengerapp.model.datamodel.User;
-import be.n.maskmessengerapp.model.repository.UserRepository;
+import be.n.maskmessengerapp.model.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
 public class UserService {
 
+    private final UserRepo userRepo;
+
     @Autowired
-    private UserRepository userRepository;
-
-    public List<User> getAllUsersFromDatabase(){
-        return userRepository.findAll();
+    public UserService(@Qualifier("MySQLUserRepo") UserRepo userRepo){
+        this.userRepo = userRepo;
     }
 
-    /**
-     * Get the user with the given id.
-     * @param id
-     *          Id of the needed user.
-     * @return
-     *          User with the given Id, if it doesn't exist, return a null object.
-     */
-    public User getUserFromDatabaseWithId(UUID id){
-        return userRepository.findById(id).orElse(null);
-    }
 
     /**
-     * Save user to the database
+     * Adds a new user to the database.
      * @param user
-     *          User that needs to be saved to the database.
+     *          User to be added to the database.
      * @return
-     *          User that has been saved to the database.
+     *          If the user is added successfully to the database return 1, else return 0.
      */
-    public User saveUserToDatabase(User user){
-        return userRepository.save(user);
+    public int addUser(User user){
+        return this.userRepo.insertUser(user);
     }
 
     /**
-     * Save a list of users to the database
-     * @param users
-     *          Users that need to be saved to the database.
+     * Returns a list with all the users in the database.
      * @return
-     *          Users that have been saved to the database.
+     *          A list with all the users in the database.
      */
-    public List<User> saveUserList(List<User> users){
-        return userRepository.saveAll(users);
+    public List<User> getAllUsers(){
+        return userRepo.selectAllUsers();
     }
 
+    /**
+     * Search in the database for a user with the given ID, and if there exists one, return that user.
+     * @param id
+     *          ID of the user you are looking for.
+     * @return
+     *          The user with the given ID, if it exists.
+     */
+    public Optional<User> getUserByID(UUID id){
+        return userRepo.selectUserByID(id);
+    }
 
     /**
-     * Delete the user that has the given ID.
+     * Update the user with the given ID with the data from the given user.
+     * @param id
+     *          ID of the user that will be updated.
+     * @param user
+     *          User object with the updated data
+     * @return
+     *          If the user is updated successfully return 1, else return 0.
+     */
+    public int updateUser(UUID id, User user){
+        return userRepo.updateUserByID(id, user);
+    }
+
+    /**
+     * Delete the user with the given ID.
      * @param id
      *          ID of the user that needs to be deleted.
      * @return
-     *          A message saying whether the user was deleted or not found in the database.
+     *          If the user is deleted successfully return 1, else return 0.
      */
-    public String deleteUserById(UUID id) {
-        if (userRepository.existsById(id)) {
-            userRepository.deleteById(id);
-            return "User deleted.";
-        }
-        else {
-            return "User doesn't exist";
-        }
+    public int deleteUser(UUID id){
+        return userRepo.deleteUserById(id);
     }
 }
