@@ -1,5 +1,6 @@
 package be.n.maskmessengerapp.controller.service;
 
+import be.n.maskmessengerapp.model.datamodel.UUIDID;
 import be.n.maskmessengerapp.model.datamodel.User;
 import be.n.maskmessengerapp.model.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ public class UserService {
      * @return
      *          The user with the given ID, if it exists.
      */
-    public Optional<User> getUserByID(UUID id){
+    public Optional<User> getUserByID(UUIDID id){
         return userRepo.selectUserByID(id);
     }
 
@@ -72,7 +73,7 @@ public class UserService {
      * @return
      *          If the user is deleted successfully return 1, else return 0.
      */
-    public int deleteUser(UUID id){
+    public int deleteUser(UUIDID id){
         return userRepo.deleteUserById(id);
     }
 }

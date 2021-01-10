@@ -9,6 +9,11 @@ public class Message {
     @JsonProperty("messagetext")
     private String messageText;
 
+    public Message(int id, String messageText) {
+        this.id = id;
+        this.messageText = messageText;
+    }
+
     /* Getters for the message class */
 
     public int getId() {

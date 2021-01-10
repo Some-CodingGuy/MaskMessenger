@@ -1,7 +1,9 @@
 package be.n.maskmessengerapp.controller.service;
 
 import be.n.maskmessengerapp.model.datamodel.Message;
+import be.n.maskmessengerapp.model.repository.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +17,13 @@ import java.util.Optional;
 @Service
 public class MessageService {
 
+
+    private MessageRepo messageRepository;
+
     @Autowired
-    private MessageRepository messageRepository;
+    public MessageService(@Qualifier("messagerepository") MessageRepo messageRepo){
+        this.messageRepository = messageRepo;
+    }
 
     /**
      * Save the given message to the database.
@@ -25,8 +32,8 @@ public class MessageService {
      * @return
      *          The message that has been saved to the database.
      */
-    public Message saveMessageToDatabase(Message message){
-        return messageRepository.save(message);
+    public int saveMessageToDatabase(Message message){
+        return messageRepository.insertMessage(message);
     }
 
     /**
@@ -37,7 +44,7 @@ public class MessageService {
      *          The message with the given id. If it doesn't exist, return a null object.
      */
     public Optional<Message> getMessageFromDatabase(int id){
-        return messageRepository.findById(id);
+        return messageRepository.getMessageFromDatabase(id);
     }
 
     /**
@@ -46,7 +53,7 @@ public class MessageService {
      *          All messages in the database.
      */
     public List<Message> getAllMessagesFromDatabase(){
-        return messageRepository.findAll();
+        return messageRepository.getAllMessagesFromDatabase();
     }
 
 

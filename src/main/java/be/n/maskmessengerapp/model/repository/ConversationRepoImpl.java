@@ -1,8 +1,8 @@
 package be.n.maskmessengerapp.model.repository;
 
 import be.n.maskmessengerapp.model.datamodel.Conversation;
+import be.n.maskmessengerapp.model.datamodel.UUIDID;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.quartz.QuartzProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +20,12 @@ public class ConversationRepoImpl implements ConversationRepo {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Override
+    public boolean existsByID(UUIDID id){
+        Optional<Conversation> convo = selectConversationById(id);
+        if (convo.isEmpty()) return false;
+        else return true;
+    }
 
 
     @Override
@@ -32,7 +38,7 @@ public class ConversationRepoImpl implements ConversationRepo {
     }
 
     @Override
-    public Optional<Conversation> selectConversationByI(UUID id) {
+    public Optional<Conversation> selectConversationById(UUIDID id) {
         String sql = "SELECT * FROM conversation WHERE id = ?";
         Conversation conversation = jdbcTemplate.queryForObject(
                 sql, new Object[]{id},
@@ -47,7 +53,7 @@ public class ConversationRepoImpl implements ConversationRepo {
     }
 
     @Override
-    public int deleteConversationById(UUID id) {
+    public int deleteConversationById(UUIDID id) {
         String sql = "DELETE FROM conversation WHERE conversation_id = ?";
         jdbcTemplate.update(sql, id);
         return 0;

@@ -2,6 +2,7 @@ package be.n.maskmessengerapp.controller.api;
 
 import be.n.maskmessengerapp.controller.service.ConversationService;
 import be.n.maskmessengerapp.model.datamodel.Conversation;
+import be.n.maskmessengerapp.model.datamodel.UUIDID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +33,8 @@ public class ConversationController {
      * @return
      *          The conversation with the given Id, if it exists.
      */
-    @GetMapping(path = "{id}")
-    public Optional<Conversation> getConversationbyId(@PathVariable("id") UUID id){
+    @GetMapping
+    public Optional<Conversation> getConversationbyId(@RequestBody UUIDID id){
         return conversationService.getConversationFromTheDatabase(id);
     }
 
@@ -42,8 +43,8 @@ public class ConversationController {
      * @param id
      *          Id of the conversation that needs to be deleted.
      */
-    @DeleteMapping(path = "{id}")
-    public void deleteConversation(@PathVariable("id") UUID id){
+    @DeleteMapping
+    public void deleteConversation(@RequestBody UUIDID id){
         conversationService.deleteConversationFromDatabase(id);
     }
 

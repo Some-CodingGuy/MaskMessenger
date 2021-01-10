@@ -19,12 +19,12 @@ public class MessageController {
         this.messageService = messageService;
     }
 
-    @GetMapping(path = "{id}")
-    public Optional<Message> getMessageById(@PathVariable("id") int id){
+    @GetMapping
+    public Optional<Message> getMessageById(@RequestBody int id){
         return messageService.getMessageFromDatabase(id);
     }
 
-    @GetMapping
+    @GetMapping(path = "all")
     public List<Message> getAllMessages(){
         return messageService.getAllMessagesFromDatabase();
     }

@@ -1,13 +1,13 @@
 package be.n.maskmessengerapp.controller.api;
 
 import be.n.maskmessengerapp.controller.service.UserService;
+import be.n.maskmessengerapp.model.datamodel.UUIDID;
 import be.n.maskmessengerapp.model.datamodel.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("api/maskmessenger/user")
@@ -26,7 +26,7 @@ public class UserController {
      * @return
      *          A list of all users registered in the database.
      */
-    @GetMapping
+    @GetMapping(path = "all")
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
@@ -40,8 +40,8 @@ public class UserController {
      * @return
      *          The user with the given Id.
      */
-    @GetMapping(path = "{id}")
-    public Optional<User> getUserById(@PathVariable("id") UUID id){
+    @GetMapping
+    public Optional<User> getUserById(@RequestBody UUIDID id){
         return userService.getUserByID(id);
     }
 
@@ -62,8 +62,8 @@ public class UserController {
      *      that needs to be deleted.
      * @param id
      */
-    @DeleteMapping(path = "{id}")
-    public void deleteUserById(@PathVariable("id") UUID id){
+    @DeleteMapping
+    public void deleteUserById(@RequestBody UUIDID id){
         userService.deleteUser(id);
     }
 

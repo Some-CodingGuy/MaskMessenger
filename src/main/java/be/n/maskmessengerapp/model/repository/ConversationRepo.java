@@ -1,11 +1,14 @@
 package be.n.maskmessengerapp.model.repository;
 
 import be.n.maskmessengerapp.model.datamodel.Conversation;
+import be.n.maskmessengerapp.model.datamodel.UUIDID;
 
 import java.util.Optional;
 import java.util.UUID;
 
 public interface ConversationRepo {
+
+    boolean existsByID(UUIDID id);
 
     /**
      * Insert new conversation into the database.
@@ -38,7 +41,7 @@ public interface ConversationRepo {
      * @return
      *          An optional with the conversation
      */
-    Optional<Conversation> selectConversationByI(UUID id);
+    Optional<Conversation> selectConversationById(UUIDID id);
 
     /**
      * Delete conversation from the database.
@@ -47,5 +50,5 @@ public interface ConversationRepo {
      * @return
      *          If the conversation is deleted successfully, return 1, else return 0.
      */
-    int deleteConversationById(UUID id);
+    int deleteConversationById(UUIDID id);
 }

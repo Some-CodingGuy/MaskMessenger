@@ -1,5 +1,6 @@
 package be.n.maskmessengerapp.model.repository;
 
+import be.n.maskmessengerapp.model.datamodel.UUIDID;
 import be.n.maskmessengerapp.model.datamodel.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -42,13 +43,13 @@ public class UserRepoImpl implements UserRepo {
     }
 
     @Override
-    public Optional<User> selectUserByID(UUID id) {
+    public Optional<User> selectUserByID(UUIDID id) {
 
         String sql = "SELECT * FROM users WHERE id = ?";
 
         User user = jdbcTemplate.queryForObject(
                 sql,
-                new Object[]{id} ,
+                new Object[]{id.getId()} ,
                 (resultSet, i) -> {
                     UUID userID = UUID.fromString(resultSet.getString("id"));
                     String name = resultSet.getString("user_name");
@@ -59,12 +60,17 @@ public class UserRepoImpl implements UserRepo {
     }
 
     @Override
+    public Optional<User> findUserByUserName(String username) {
+        return Optional.empty();
+    }
+
+    @Override
     public int updateUserByID(UUID id, User user) {
         return 0;
     }
 
     @Override
-    public int deleteUserById(UUID id) {
+    public int deleteUserById(UUIDID id) {
         return 0;
     }
 }

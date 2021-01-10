@@ -1,5 +1,6 @@
 package be.n.maskmessengerapp.model.repository;
 
+import be.n.maskmessengerapp.model.datamodel.UUIDID;
 import be.n.maskmessengerapp.model.datamodel.User;
 
 import java.util.List;
@@ -45,7 +46,9 @@ public interface UserRepo {
      * @return
      *          The User with the given ID if it exists.
      */
-    Optional<User> selectUserByID(UUID id);
+    Optional<User> selectUserByID(UUIDID id);
+
+    Optional<User> findUserByUserName(String username);
 
 
     /**
@@ -66,6 +69,6 @@ public interface UserRepo {
      * @return
      *          If the user is deleted successfully return 1, else return 0.
      */
-    int deleteUserById(UUID id);
+    int deleteUserById(UUIDID id);
 
 }
