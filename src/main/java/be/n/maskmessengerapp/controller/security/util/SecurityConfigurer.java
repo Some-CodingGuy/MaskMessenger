@@ -14,8 +14,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
-    @Autowired
+
     private MyUserDetailsService myUserDetailsService;
+
+    @Autowired
+    public SecurityConfigurer(MyUserDetailsService myUserDetailsService){
+        this.myUserDetailsService = myUserDetailsService;
+    }
 
     /**
      * This method will validate the the user credentials, and throw an exception if the user is not allowed.
