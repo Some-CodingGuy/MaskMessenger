@@ -5,6 +5,7 @@ import be.n.maskmessengerapp.model.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,7 +48,9 @@ public class MessageService {
      *          All messages in the database.
      */
     public List<Message> getAllMessagesFromDatabase(){
-        return messageRepository.findAll();
+        List<Message> list = new ArrayList<>();
+        messageRepository.findAll().forEach(e -> list.add(e));
+        return list;
     }
 
 

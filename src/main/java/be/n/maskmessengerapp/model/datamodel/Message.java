@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
 public class Message {
@@ -12,7 +13,9 @@ public class Message {
     @Id
     @GeneratedValue
     private int id;
-    private String messageText;
+    private String sendername;
+    private String messagetext;
+
 
     /* Getters for the message class */
 
@@ -20,19 +23,26 @@ public class Message {
         return id;
     }
 
+    public String getSenderName() {
+        return sendername;
+    }
+
     public String getMessageText() {
-        return messageText;
+        return messagetext;
     }
 
     /* Setters for the message class */
 
-    public Message setId(int id) {
+    public void setId(int id) {
         this.id = id;
-        return this;
     }
 
-    public Message setMessageText(String messageText) {
-        this.messageText = messageText;
-        return this;
+    public void setSenderName(String senderName) {
+        this.sendername = senderName;
     }
+
+    public void setMessageText(String messageText) {
+        this.messagetext = messageText;
+    }
+
 }

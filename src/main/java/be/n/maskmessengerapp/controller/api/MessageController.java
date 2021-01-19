@@ -30,8 +30,10 @@ public class MessageController {
     }
 
     @PostMapping
-    public void saveMessage(Message message){
+    public String saveMessage(@ModelAttribute Message message){
         messageService.saveMessageToDatabase(message);
+        return
+                "<meta http-equiv = \"refresh\" content=\"0; URL='/chatroom'\" />\n";
     }
 
 

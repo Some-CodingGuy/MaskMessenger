@@ -1,20 +1,30 @@
 package be.n.maskmessengerapp.controller.api;
 
+import be.n.maskmessengerapp.controller.service.MessageService;
+import be.n.maskmessengerapp.model.datamodel.Message;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import javax.naming.Context;
+
+@Controller
 public class HomeController {
 
+    @Autowired
+    MessageService messageService;
 
     @GetMapping("/")
     public String home(){
-        return "templates/home.html";
+        return ("main");
     }
 
-    @GetMapping("/user")
-    public String user(){
-        return ("<h1> Welcome to the user home</h1>");
+    @GetMapping("/chatroom")
+    public String chatroom(Model model) {
+
+        model.addAttribute("message", messageService.getAllMessagesFromDatabase());
+        return "chatroom";
     }
 
     @GetMapping("/admin")

@@ -32,6 +32,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
         <!-- I added the next dependency. This one allows us to work with Json Web Tokens (create and validate) -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
