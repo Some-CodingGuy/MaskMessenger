@@ -1,9 +1,8 @@
 package be.n.maskmessengerapp.controller.api;
 
-import be.n.maskmessengerapp.controller.service.ConversationService;
-import be.n.maskmessengerapp.model.datamodel.Conversation;
+import be.n.maskmessengerapp.controller.service.ChatRoomService;
+import be.n.maskmessengerapp.model.datamodel.ChatRoom;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -11,18 +10,18 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("api/maskmessenger/conversation")
-public class ConversationController {
+public class ChatRoomController {
 
-    private ConversationService conversationService;
+    private ChatRoomService chatRoomService;
 
     @Autowired
-    public ConversationController (ConversationService conversationService){
-        this.conversationService = conversationService;
+    public ChatRoomController(ChatRoomService chatRoomService){
+        this.chatRoomService = chatRoomService;
     }
 
     @PostMapping
-    public void createConversation(@RequestBody Conversation conversation){
-        this.conversationService.createNewConversation(conversation);
+    public void createConversation(@RequestBody ChatRoom chatRoom){
+        this.chatRoomService.createNewChatRoom(chatRoom);
     }
 
     /**
@@ -33,8 +32,8 @@ public class ConversationController {
      *          The conversation with the given Id, if it exists.
      */
     @GetMapping(path = "{id}")
-    public Optional<Conversation> getConversationbyId(@PathVariable("id") UUID id){
-        return conversationService.getConversationFromTheDatabase(id);
+    public Optional<ChatRoom> getConversationbyId(@PathVariable("id") UUID id){
+        return chatRoomService.getChatRoomFromTheDatabase(id);
     }
 
     /**
@@ -44,7 +43,7 @@ public class ConversationController {
      */
     @DeleteMapping(path = "{id}")
     public void deleteConversation(@PathVariable("id") UUID id){
-        conversationService.deleteConversationFromDatabase(id);
+        chatRoomService.deleteChatRoomFromDatabase(id);
     }
 
 

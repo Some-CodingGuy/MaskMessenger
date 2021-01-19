@@ -10,6 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+/**
+ * This was supposed to process the JWTs, but for now I'll just let it here, I'm not going to use it yet, but I'll do in
+ *      the future, and I don't want to have to rewrite it all again from scratch.
+ */
 public class JwtUtil {
 
     private String Secret_Key = "secret";

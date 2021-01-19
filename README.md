@@ -1,6 +1,6 @@
 # Mask Messenger #
 
-Mask Messenger is a messaging app focused on protecting the confidentiality and integrity of the data ("masking" the data, lol) exchanged between users. By using encryption techniques we assure the data is exchanged safely between users, minimizing the risk of a third party eavesdropping on the conversation. (This is the goal, now let's keep working to get there).
+Mask Messenger is a messaging app focused on protecting the confidentiality and integrity of the data ("masking" the data, lol) exchanged between users. By using encryption techniques we assure the data is exchanged safely between users, minimizing the risk of a third party eavesdropping on the chatRoom. (This is the goal, now let's keep working to get there).
 
 I'll be updating the progress on a separate file that I'll link later on.
 

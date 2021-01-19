@@ -3,15 +3,15 @@ package be.n.maskmessengerapp.model.datamodel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Message {
 
     @Id
-    @JsonProperty("id")
+    @GeneratedValue
     private int id;
-    @JsonProperty("messagetext")
     private String messageText;
 
     /* Getters for the message class */

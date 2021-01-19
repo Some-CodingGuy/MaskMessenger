@@ -9,12 +9,12 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(){
-        return ("<h1> Welcome to the standard home </h1>");
+        return "templates/home.html";
     }
 
     @GetMapping("/user")
     public String user(){
-        return ("<h1> Welcome to the user home </h1>");
+        return ("<h1> Welcome to the user home</h1>");
     }
 
     @GetMapping("/admin")

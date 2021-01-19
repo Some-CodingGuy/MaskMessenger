@@ -12,7 +12,6 @@ public class User {
     private UUID id;
     private String userName;
     private String password;
-    private boolean active;
     private String roles;
 
     public UUID getId() {
@@ -37,14 +36,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = true;
     }
 
     public String getRoles() {
