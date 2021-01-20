@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 // This annotation tells Spring Security that this is the configuration class for the "web security".
@@ -43,7 +44,14 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/chatroom").hasRole("USER")
                 .antMatchers("/").permitAll()
-                .and().formLogin();
+                .and().formLogin()
+                .and()
+                    .logout()
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/")
+                .permitAll();
     }
 
     @Bean

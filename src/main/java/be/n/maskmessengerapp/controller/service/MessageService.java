@@ -28,6 +28,7 @@ public class MessageService {
      *          The message that has been saved to the database.
      */
     public Message saveMessageToDatabase(Message message){
+        message.setSenderName("Anonymous: ");
         return messageRepository.save(message);
     }
 

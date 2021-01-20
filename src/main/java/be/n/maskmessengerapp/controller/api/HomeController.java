@@ -1,7 +1,9 @@
 package be.n.maskmessengerapp.controller.api;
 
+import be.n.maskmessengerapp.controller.security.service.MyUserDetailsService;
 import be.n.maskmessengerapp.controller.service.MessageService;
 import be.n.maskmessengerapp.model.datamodel.Message;
+import be.n.maskmessengerapp.model.datamodel.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +25,8 @@ public class HomeController {
     @GetMapping("/chatroom")
     public String chatroom(Model model) {
 
-        model.addAttribute("message", messageService.getAllMessagesFromDatabase());
+        model.addAttribute("messages", messageService.getAllMessagesFromDatabase());
+        model.addAttribute("message", new Message());
         return "chatroom";
     }
 

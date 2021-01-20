@@ -2,6 +2,7 @@ package be.n.maskmessengerapp.model.datamodel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,9 +14,10 @@ public class Message {
     @Id
     @GeneratedValue
     private int id;
-    private String sendername;
-    private String messagetext;
-
+    @Column(name = "sendername")
+    private String senderName;
+    @Column(name = "messagetext")
+    private String messageText;
 
     /* Getters for the message class */
 
@@ -24,11 +26,11 @@ public class Message {
     }
 
     public String getSenderName() {
-        return sendername;
+        return senderName;
     }
 
     public String getMessageText() {
-        return messagetext;
+        return messageText;
     }
 
     /* Setters for the message class */
@@ -38,11 +40,10 @@ public class Message {
     }
 
     public void setSenderName(String senderName) {
-        this.sendername = senderName;
+        this.senderName = senderName;
     }
 
     public void setMessageText(String messageText) {
-        this.messagetext = messageText;
+        this.messageText = messageText;
     }
-
 }
