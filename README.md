@@ -68,3 +68,6 @@ The following are the original functionalities I wanted to implement. But I'll p
 ### V. 1.0.0 ###
 
 The first version is a group chat where everyone can send messages anonymously (usernames, and other data of the sender is not saved). It has a man page that sends you to a login page, after which, if successfully logged in, you can send messages in the chat.
+
+
+To use it, go to /src/main/resources/application.properties and fill in the first three fields with the credentials for your database (the address of the database, the suername that you set up to use the database, and the password of that user). Enjoy! (if you like this, don't forget to leave a star ;) )
